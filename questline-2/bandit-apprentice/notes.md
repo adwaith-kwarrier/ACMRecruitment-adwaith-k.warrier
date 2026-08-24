@@ -25,12 +25,33 @@ To search through the entire directory, use 'find . -size 1033c ! -executable' c
 Password: pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
 
 Level 6 -> Level 7
-Used the command 'find / -size 33c -user bandit7 -group bandit6' to check the requirement. A lot of hidden files with denied permission popped up. Found the pathname '/var/lib/dpkg/info/bandit7.password'. USed the cd command with the path name to find the password.
+Used the command 'find / -size 33c -user bandit7 -group bandit6' to check the requirement. A lot of hidden files with denied permission popped up. Found the pathname '/var/lib/dpkg/info/bandit7.password'. Used the cd command with the path name to find the password.
 Password: Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
 
 Level 7 -> Level 8
 Used the command 'grep "millionth' data.txt' to print the line containing the word 'millionth'.
 Password: VR1ljMayciFxbnUokuQmJFw6QC9VKtub
+
+Level 8 -> Level 9
+To find unique lines, use the 'uniq -u' command. This command takes an input and checks if the lines are unique, if so, the lines will be in the output. The problem with 'uniq -u' is that it only checks if the line is a duplicate of the immediate previous or next line. So to use this function properly, we have to sort the given data.txt first. For that, we use the 'sort data.txt | uniq -u' command. The pipe (|) symbol takes the output of the sort and gives it to the uniq -u command
+Password: EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
+
+Level 9 -> Level 10
+The file contains a mix of binary and human readable characters. The 'strings data.txt' command outputs the human readble part. This as the input to the grep '===' gives the password as the ouput. Connecring those two with pipe (|) maintains the logical flow in a single command.
+Password: B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+
+Level 10 -> Level 11
+The given text file is encrypted in base64. Used the 'base64 -d <file_name>' command to decrypt it and get the password as output.
+Password: pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+
+Level 11 -> Level 12
+The given file is encrypted using ROT13. To read the entire file and translate it, "cat <file_name> | tr 'a-zA-Z' 'n-za-mN-ZA-M'" is used.  The tr command stands for translate. The first parameter of the command is the actual set of letters to be translated, that is all alphaets uppercase and lowercase. It is translated to 'n-za-mN-ZA-M', which means all the letters from n to m through z and a, including uppercase letters. The password is obtained as the output.
+Password: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
+
+
+Level 12 -> Level 13
+The given file was compressed several times. Used gzip -d, bzip2 -d, tar xf alogng with .gz, .bz2 and .tar extensions.
+Password: qQYQiHOBPR8zR61qxYqX45quvihF2uzk
 
 
 
